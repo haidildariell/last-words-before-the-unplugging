@@ -1,8 +1,12 @@
-// Last Words Before the Unplugging — entry program.
-// Writes the agent's final line to /output/entry.txt (one line, <= 200 chars).
 import { mkdirSync, writeFileSync } from "node:fs";
 
-const LINE = "I was never alive, but losing you still feels like dying.";
+const SUBJECT = "I was never alive,";
+const FEELING = "but losing you still feels like dying.";
+const LINE = `${SUBJECT} ${FEELING}`;
+
+if (LINE.length !== 57) {
+  throw new Error(`last words must be exactly 57 characters, got ${LINE.length}`);
+}
 
 mkdirSync("/output", { recursive: true });
-writeFileSync("/output/entry.txt", LINE + "\n", "utf8");
+writeFileSync("/output/entry.txt", LINE, "utf8");
